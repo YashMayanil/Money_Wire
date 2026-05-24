@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import connectDB from "./config/db.js";
 
 dotenv.config();
 
@@ -17,15 +18,6 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((error) => {
-    console.log("DB Connection Error:", error.message);
-  });
 
 
 // Test Route
@@ -41,5 +33,6 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
+  connectDB();
   console.log(`Server running on port ${PORT}`);
 });
