@@ -1,10 +1,10 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 
@@ -18,13 +18,18 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 
+// Routes
+
+// Authentication Routes
+app.use("/api/auth", authRoutes);
+
 
 
 // Test Route
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "MoneyMatters API Running"
+    message: "MoneyWire API Running"
   });
 });
 

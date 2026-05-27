@@ -1,6 +1,9 @@
 import otpGenerator from "otp-generator";
 import OTP from "../models/otp.model.js";
 import sendEmail from "../utils/email.services.js";
+import User from "../models/user.model.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 
 // Send OTP
@@ -28,7 +31,7 @@ export const sendOTP = async (req, res) => {
     // Send Email
     await sendEmail(
       email,
-      "MoneyMatters OTP Verification",
+      "MoneyWire OTP Verification",
       `Your OTP is ${otp}`
     );
 
