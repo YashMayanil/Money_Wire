@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import watchlistRoutes from "./routes/watchlist.routes.js";
 
 dotenv.config();
 
@@ -22,6 +23,10 @@ app.use(morgan("dev"));
 
 // Authentication Routes
 app.use("/api/auth", authRoutes);
+
+// Watchlist Routes
+app.use("/api/watchlist", watchlistRoutes);
+
 
 
 
